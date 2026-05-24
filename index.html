@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Farhan Hasin – Astrophysics & Physics Enthusiast</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --deep-space: #020b18;
+    --nebula-dark: #050f1f;
+    --star-white: #e8f4fd;
+    --cosmic-blue: #1a6fa8;
+    --aurora: #00c9a7;
+    --stardust: #a8c8e8;
+    --accent-gold: #f0c060;
+    --muted: #6a8aaa;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Raleway', sans-serif;
+    background: var(--deep-space);
+    color: var(--star-white);
+    overflow-x: hidden;
+  }
+  #stars { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; overflow: hidden; }
+  .star { position: absolute; border-radius: 50%; background: white; animation: twinkle linear infinite; }
+  @keyframes twinkle {
+    0%, 100% { opacity: 0.1; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.4); }
+  }
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.2rem 3rem;
+    background: rgba(2, 11, 24, 0.85);
+    border-bottom: 1px solid rgba(0, 201, 167, 0.15);
+    backdrop-filter: blur(8px);
+  }
+  .nav-logo { font-family: 'Cinzel', serif; font-size: 1.1rem; color: var(--aurora); letter-spacing: 2px; }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a { color: var(--stardust); text-decoration: none; font-size: 0.85rem; letter-spacing: 1px; text-transform: uppercase; transition: color 0.3s; }
+  .nav-links a:hover { color: var(--aurora); }
+  .hero {
+    position: relative; z-index: 1;
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    text-align: center; padding: 6rem 2rem 3rem;
+  }
+  .hero-orbit {
+    width: 200px; height: 200px; border-radius: 50%;
+    border: 1px solid rgba(0,201,167,0.2);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 2rem; position: relative;
+    animation: spin 20s linear infinite;
+  }
+  .hero-orbit::before {
+    content: '✦'; position: absolute; top: -8px; left: 50%; transform: translateX(-50%);
+    color: var(--aurora); font-size: 1rem;
+  }
+  @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+  .hero-inner { animation: spin 20s linear infinite reverse; }
+  .avatar {
+    width: 160px; height: 160px; border-radius: 50%;
+    background: linear-gradient(135deg, #0a2a4a, #1a6fa8);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Cinzel', serif; font-size: 3.5rem; color: var(--aurora);
+    border: 2px solid rgba(0,201,167,0.3);
+  }
+  .hero h1 { font-family: 'Cinzel', serif; font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 700; letter-spacing: 3px; margin-bottom: 0.5rem; }
+  .hero h1 span { color: var(--aurora); }
+  .hero-tagline { font-size: 1rem; color: var(--stardust); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 1.5rem; font-weight: 300; }
+  .hero-desc { max-width: 600px; color: var(--muted); font-size: 1rem; line-height: 1.8; margin-bottom: 2.5rem; }
+  .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
+  .btn {
+    padding: 0.75rem 2rem; border-radius: 2px; font-family: 'Raleway', sans-serif;
+    font-size: 0.85rem; letter-spacing: 2px; text-transform: uppercase; cursor: pointer;
+    text-decoration: none; transition: all 0.3s; display: inline-block;
+  }
+  .btn-primary { background: var(--aurora); color: var(--deep-space); font-weight: 600; border: none; }
+  .btn-primary:hover { background: #00e6bf; transform: translateY(-2px); }
+  .btn-outline { background: transparent; color: var(--aurora); border: 1px solid var(--aurora); }
+  .btn-outline:hover { background: rgba(0,201,167,0.1); transform: translateY(-2px); }
+  section { position: relative; z-index: 1; padding: 6rem 2rem; max-width: 1100px; margin: 0 auto; }
+  .section-label { font-size: 0.75rem; letter-spacing: 4px; text-transform: uppercase; color: var(--aurora); margin-bottom: 0.5rem; }
+  .section-title { font-family: 'Cinzel', serif; font-size: clamp(1.8rem, 4vw, 2.5rem); margin-bottom: 1rem; }
+  .section-line { width: 60px; height: 1px; background: var(--aurora); margin-bottom: 3rem; }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+  .about-text p { color: var(--stardust); line-height: 1.9; margin-bottom: 1rem; font-size: 0.95rem; }
+  .about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  .stat-card {
+    background: rgba(26, 111, 168, 0.08);
+    border: 1px solid rgba(0,201,167,0.15);
+    border-radius: 4px; padding: 1.5rem; text-align: center;
+    transition: border-color 0.3s, transform 0.3s;
+  }
+  .stat-card:hover { border-color: var(--aurora); transform: translateY(-4px); }
+  .stat-num { font-family: 'Cinzel', serif; font-size: 2rem; color: var(--aurora); font-weight: 700; }
+  .stat-label { font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; margin-top: 0.25rem; }
+  .achievements-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+  .achievement-card {
+    background: rgba(5, 15, 31, 0.8);
+    border: 1px solid rgba(0,201,167,0.15);
+    border-radius: 4px; padding: 2rem;
+    transition: all 0.3s; position: relative; overflow: hidden;
+  }
+  .achievement-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, transparent, var(--aurora), transparent);
+  }
+  .achievement-card:hover { border-color: var(--aurora); transform: translateY(-5px); background: rgba(0,201,167,0.05); }
+  .achievement-icon { font-size: 2rem; margin-bottom: 1rem; }
+  .achievement-card h3 { font-family: 'Cinzel', serif; font-size: 1rem; color: var(--star-white); margin-bottom: 0.5rem; }
+  .achievement-card p { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
+  .achievement-year { display: inline-block; margin-top: 0.75rem; font-size: 0.75rem; color: var(--aurora); letter-spacing: 1px; border: 1px solid rgba(0,201,167,0.3); padding: 0.2rem 0.75rem; border-radius: 2px; }
+  .project-card {
+    background: rgba(5, 15, 31, 0.8);
+    border: 1px solid rgba(26,111,168,0.2);
+    border-radius: 4px; padding: 2.5rem;
+    display: flex; gap: 2rem; align-items: flex-start;
+    transition: all 0.3s; margin-bottom: 1.5rem;
+  }
+  .project-card:hover { border-color: var(--aurora); transform: translateX(5px); }
+  .project-icon { font-size: 2.5rem; min-width: 50px; }
+  .project-info h3 { font-family: 'Cinzel', serif; font-size: 1.2rem; color: var(--star-white); margin-bottom: 0.5rem; }
+  .project-info p { font-size: 0.9rem; color: var(--muted); line-height: 1.7; margin-bottom: 1rem; }
+  .project-link { color: var(--aurora); text-decoration: none; font-size: 0.85rem; letter-spacing: 1px; }
+  .project-link:hover { text-decoration: underline; }
+  .tag { display: inline-block; font-size: 0.7rem; letter-spacing: 1px; color: var(--stardust); background: rgba(26,111,168,0.15); border: 1px solid rgba(26,111,168,0.3); padding: 0.2rem 0.6rem; border-radius: 2px; margin-right: 0.5rem; margin-bottom: 0.5rem; }
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; }
+  .skill-group { background: rgba(5,15,31,0.8); border: 1px solid rgba(0,201,167,0.1); border-radius: 4px; padding: 1.5rem; }
+  .skill-group h3 { font-family: 'Cinzel', serif; font-size: 0.9rem; color: var(--aurora); margin-bottom: 1rem; letter-spacing: 1px; }
+  .skill-item { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.6rem; font-size: 0.85rem; color: var(--stardust); }
+  .skill-item::before { content: '◆'; color: var(--aurora); font-size: 0.5rem; }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+  .contact-info p { color: var(--stardust); line-height: 1.8; margin-bottom: 2rem; }
+  .social-links { display: flex; flex-direction: column; gap: 1rem; }
+  .social-link {
+    display: flex; align-items: center; gap: 1rem;
+    padding: 1rem 1.5rem;
+    background: rgba(5,15,31,0.8);
+    border: 1px solid rgba(0,201,167,0.1);
+    border-radius: 4px; text-decoration: none; color: var(--stardust);
+    transition: all 0.3s; font-size: 0.9rem;
+  }
+  .social-link:hover { border-color: var(--aurora); color: var(--aurora); transform: translateX(5px); }
+  .social-icon { font-size: 1.2rem; min-width: 24px; }
+  .contact-email {
+    background: rgba(0,201,167,0.05); border: 1px solid rgba(0,201,167,0.2);
+    border-radius: 4px; padding: 2rem;
+  }
+  .contact-email h3 { font-family: 'Cinzel', serif; font-size: 1rem; color: var(--aurora); margin-bottom: 1rem; }
+  .cosmic-divider { width: 100%; height: 1px; background: linear-gradient(90deg, transparent, rgba(0,201,167,0.3), transparent); margin: 0; }
+  footer {
+    position: relative; z-index: 1;
+    text-align: center; padding: 2rem;
+    border-top: 1px solid rgba(0,201,167,0.1);
+    color: var(--muted); font-size: 0.8rem; letter-spacing: 1px;
+  }
+  @media (max-width: 700px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .project-card { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<div id="stars"></div>
+
+<nav>
+  <div class="nav-logo">⭑ Farhan Hasin</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#achievements">Achievements</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-orbit">
+    <div class="hero-inner">
+      <div class="avatar">FH</div>
+    </div>
+  </div>
+  <div class="hero-tagline">Astrophysics &amp; Physics Enthusiast</div>
+  <h1><span>Farhan Hasin</span></h1>
+  <p style="font-family:'Cinzel',serif; font-size:1rem; color:var(--stardust); letter-spacing:2px; margin-bottom:1.5rem;">Exploring the Universe, One Equation at a Time</p>
+  <p class="hero-desc">High school student from Bangladesh passionate about the cosmos, physics, and the pursuit of scientific truth. STEM researcher in the making — reaching for the stars, literally.</p>
+  <div class="hero-btns">
+    <a href="#achievements" class="btn btn-primary">View Achievements</a>
+    <a href="#contact" class="btn btn-outline">Get in Touch</a>
+  </div>
+</div>
+
+<div class="cosmic-divider"></div>
+
+<!-- ABOUT -->
+<section id="about">
+  <p class="section-label">Who I Am</p>
+  <h2 class="section-title">About Me</h2>
+  <div class="section-line"></div>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>I'm Farhan Hasin, a high school student from Bangladesh with a deep fascination for astrophysics and physics. My curiosity about the universe drives me to explore everything from celestial mechanics to quantum phenomena.</p>
+      <p>I'm actively pursuing a path in STEM research, competing in national and international olympiads, and contributing to astronomy outreach through real-world projects. I believe the universe has stories to tell — and I'm here to listen.</p>
+      <p>Currently working on <a href="https://www.star-sync.com" target="_blank" style="color: var(--aurora); text-decoration: none;">Star-Sync</a>, an astronomy platform bridging science and community.</p>
+    </div>
+    <div class="about-stats">
+      <div class="stat-card">
+        <div class="stat-num">2</div>
+        <div class="stat-label">Olympiad Qualifications</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">∞</div>
+        <div class="stat-label">Curiosity Level</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">1</div>
+        <div class="stat-label">Active Projects</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">🌌</div>
+        <div class="stat-label">Universe to Explore</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="cosmic-divider"></div>
+
+<!-- ACHIEVEMENTS -->
+<section id="achievements">
+  <p class="section-label">Milestones</p>
+  <h2 class="section-title">Achievements</h2>
+  <div class="section-line"></div>
+  <div class="achievements-grid">
+    <div class="achievement-card">
+      <div class="achievement-icon">🌠</div>
+      <h3>International Astronomy Olympiad</h3>
+      <p>Qualified for the International Astronomy Olympiad — a prestigious global competition testing deep knowledge of astronomy and astrophysics.</p>
+      <span class="achievement-year">IAO 2025</span>
+    </div>
+    <div class="achievement-card">
+      <div class="achievement-icon">⚛️</div>
+      <h3>Bangladesh Physics Olympiad</h3>
+      <p>Competed in the Bangladesh Physics Olympiad 2025, demonstrating excellence in physics problem-solving at the national level.</p>
+      <span class="achievement-year">BPhO 2025</span>
+    </div>
+    <div class="achievement-card">
+      <div class="achievement-icon">🔭</div>
+      <h3>Star-Sync Astronomy Platform</h3>
+      <p>Currently developing and contributing to Star-Sync, an astronomy website dedicated to making the cosmos accessible to all.</p>
+      <span class="achievement-year">Ongoing</span>
+    </div>
+  </div>
+</section>
+
+<div class="cosmic-divider"></div>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <p class="section-label">What I'm Building</p>
+  <h2 class="section-title">Projects</h2>
+  <div class="section-line"></div>
+  <div class="project-card">
+    <div class="project-icon">🌐</div>
+    <div class="project-info">
+      <h3>Star-Sync</h3>
+      <p>An astronomy-focused website I'm actively contributing to — designed to make astronomical knowledge, events, and community accessible. Covers topics from stargazing to deep-space phenomena.</p>
+      <div>
+        <span class="tag">Astronomy</span>
+        <span class="tag">Science Outreach</span>
+        <span class="tag">Web</span>
+      </div>
+      <br>
+      <a href="https://www.star-sync.com" target="_blank" class="project-link">Visit star-sync.com →</a>
+    </div>
+  </div>
+  <div class="project-card">
+    <div class="project-icon">📐</div>
+    <div class="project-info">
+      <h3>Olympiad Problem Research</h3>
+      <p>Studying and solving advanced astrophysics and physics problems for competitive olympiads — covering celestial mechanics, optics, thermodynamics, and more.</p>
+      <div>
+        <span class="tag">Physics</span>
+        <span class="tag">Astrophysics</span>
+        <span class="tag">Research</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="cosmic-divider"></div>
+
+<!-- SKILLS -->
+<section id="skills">
+  <p class="section-label">Expertise</p>
+  <h2 class="section-title">Skills & Interests</h2>
+  <div class="section-line"></div>
+  <div class="skills-grid">
+    <div class="skill-group">
+      <h3>🔭 Astrophysics</h3>
+      <div class="skill-item">Celestial Mechanics</div>
+      <div class="skill-item">Stellar Evolution</div>
+      <div class="skill-item">Cosmology</div>
+      <div class="skill-item">Observational Astronomy</div>
+    </div>
+    <div class="skill-group">
+      <h3>⚡ Physics</h3>
+      <div class="skill-item">Classical Mechanics</div>
+      <div class="skill-item">Thermodynamics</div>
+      <div class="skill-item">Optics & Waves</div>
+      <div class="skill-item">Electromagnetism</div>
+    </div>
+    <div class="skill-group">
+      <h3>🧮 Mathematics</h3>
+      <div class="skill-item">Calculus</div>
+      <div class="skill-item">Linear Algebra</div>
+      <div class="skill-item">Statistics</div>
+      <div class="skill-item">Problem Solving</div>
+    </div>
+    <div class="skill-group">
+      <h3>🌍 Languages</h3>
+      <div class="skill-item">Bengali (Native)</div>
+      <div class="skill-item">English (Fluent)</div>
+      <div class="skill-item">Scientific Writing</div>
+      <div class="skill-item">Research Communication</div>
+    </div>
+  </div>
+</section>
+
+<div class="cosmic-divider"></div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <p class="section-label">Reach Out</p>
+  <h2 class="section-title">Contact</h2>
+  <div class="section-line"></div>
+  <div class="contact-grid">
+    <div class="contact-info">
+      <p>I'm always open to connecting with fellow science enthusiasts, researchers, educators, or anyone curious about the universe. Whether it's collaboration, mentorship, or just a cosmic conversation — reach out!</p>
+      <div class="social-links">
+        <a href="mailto:frh73375@gmail.com" class="social-link">
+          <span class="social-icon">✉</span> frh73375@gmail.com
+        </a>
+        <!-- REPLACE the # below with your actual profile URLs -->
+        <a href="https://linkedin.com/in/YOUR-USERNAME" target="_blank" class="social-link">
+          <span class="social-icon">in</span> LinkedIn
+        </a>
+        <a href="https://facebook.com/YOUR-USERNAME" target="_blank" class="social-link">
+          <span class="social-icon">f</span> Facebook
+        </a>
+        <a href="https://github.com/YOUR-USERNAME" target="_blank" class="social-link">
+          <span class="social-icon">⌥</span> GitHub
+        </a>
+        <a href="https://discord.com/users/YOUR-ID" target="_blank" class="social-link">
+          <span class="social-icon">#</span> Discord
+        </a>
+      </div>
+    </div>
+    <div class="contact-email">
+      <h3>📡 Let's Connect</h3>
+      <p style="color: var(--stardust); font-size: 0.9rem; line-height: 1.8; margin-bottom: 1.5rem;">Looking to collaborate on astronomy research, STEM outreach, or just want to talk about black holes and spacetime? My inbox is always open.</p>
+      <a href="mailto:frh73375@gmail.com" class="btn btn-primary">Send a Message</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>⭑ Farhan Hasin · Astrophysics & Physics Enthusiast · Bangladesh · 2025</p>
+</footer>
+
+<script>
+  const starsEl = document.getElementById('stars');
+  for (let i = 0; i < 180; i++) {
+    const s = document.createElement('div');
+    s.className = 'star';
+    const size = Math.random() * 2.5 + 0.5;
+    s.style.cssText = `
+      width:${size}px; height:${size}px;
+      top:${Math.random()*100}%;
+      left:${Math.random()*100}%;
+      animation-duration:${Math.random()*4+2}s;
+      animation-delay:${Math.random()*5}s;
+      opacity:${Math.random()*0.7+0.1};
+    `;
+    starsEl.appendChild(s);
+  }
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      document.querySelector(a.getAttribute('href'))?.scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+</script>
+</body>
+</html>
