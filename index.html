@@ -4,173 +4,194 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Farhan Hasin – Astrophysics & Physics Enthusiast</title>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --deep-space: #020b18;
-    --nebula-dark: #050f1f;
-    --star-white: #e8f4fd;
-    --cosmic-blue: #1a6fa8;
-    --aurora: #00c9a7;
-    --stardust: #a8c8e8;
-    --accent-gold: #f0c060;
-    --muted: #6a8aaa;
+    --bg:       #0c0c10;
+    --surface:  #13131a;
+    --surface2: #1c1c26;
+    --border:   rgba(255,255,255,0.07);
+    --border2:  rgba(255,255,255,0.13);
+    --text:     #e8e4dc;
+    --muted:    #7a7570;
+    --faint:    #3a3830;
+    --gold:     #c9963a;
+    --gold-lt:  #e8b55a;
+    --blue:     #4a8fd4;
+    --glow:     rgba(201,150,58,0.12);
   }
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
   body {
-    font-family: 'Raleway', sans-serif;
-    background: var(--deep-space);
-    color: var(--star-white);
+    font-family: 'Outfit', sans-serif;
+    background: var(--bg);
+    color: var(--text);
     overflow-x: hidden;
-  }
-  #stars { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; overflow: hidden; }
-  .star { position: absolute; border-radius: 50%; background: white; animation: twinkle linear infinite; }
-  @keyframes twinkle {
-    0%, 100% { opacity: 0.1; transform: scale(1); }
-    50% { opacity: 1; transform: scale(1.4); }
+    font-weight: 300;
+    line-height: 1.6;
   }
   nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 1.2rem 3rem;
-    background: rgba(2, 11, 24, 0.85);
-    border-bottom: 1px solid rgba(0, 201, 167, 0.15);
-    backdrop-filter: blur(8px);
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    display:flex; justify-content:space-between; align-items:center;
+    padding:1.4rem 4rem;
+    background: rgba(12,12,16,0.88);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
   }
-  .nav-logo { font-family: 'Cinzel', serif; font-size: 1.1rem; color: var(--aurora); letter-spacing: 2px; }
-  .nav-links { display: flex; gap: 2rem; list-style: none; }
-  .nav-links a { color: var(--stardust); text-decoration: none; font-size: 0.85rem; letter-spacing: 1px; text-transform: uppercase; transition: color 0.3s; }
-  .nav-links a:hover { color: var(--aurora); }
+  .nav-logo { font-family:'Playfair Display', serif; font-size:1.15rem; color:var(--gold); letter-spacing:0.04em; }
+  .nav-links { display:flex; gap:2.5rem; list-style:none; }
+  .nav-links a { color:var(--muted); text-decoration:none; font-size:0.78rem; letter-spacing:0.15em; text-transform:uppercase; font-weight:400; transition:color 0.25s; }
+  .nav-links a:hover { color:var(--gold); }
+
   .hero {
-    position: relative; z-index: 1;
-    min-height: 100vh;
-    display: flex; flex-direction: column; justify-content: center; align-items: center;
-    text-align: center; padding: 6rem 2rem 3rem;
+    position:relative; z-index:1;
+    min-height:100vh;
+    display:flex; flex-direction:column; justify-content:flex-end;
+    padding:0 4rem 6rem;
+    border-bottom:1px solid var(--border);
+    overflow:hidden;
   }
-  .hero-orbit {
-    width: 200px; height: 200px; border-radius: 50%;
-    border: 1px solid rgba(0,201,167,0.2);
-    display: flex; align-items: center; justify-content: center;
-    margin-bottom: 2rem; position: relative;
-    animation: spin 20s linear infinite;
+  .hero-bg {
+    position:absolute; inset:0; pointer-events:none;
+    background:
+      radial-gradient(ellipse 60% 50% at 70% 40%, rgba(74,143,212,0.08) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 60% at 20% 80%, rgba(201,150,58,0.07) 0%, transparent 60%),
+      radial-gradient(ellipse 100% 80% at 50% 0%, rgba(201,150,58,0.04) 0%, transparent 50%);
   }
-  .hero-orbit::before {
-    content: '✦'; position: absolute; top: -8px; left: 50%; transform: translateX(-50%);
-    color: var(--aurora); font-size: 1rem;
+  .hero-grid {
+    position:absolute; inset:0; pointer-events:none;
+    background-image: linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+    background-size:60px 60px;
+    mask-image: linear-gradient(to bottom, transparent 0%, black 30%, black 70%, transparent 100%);
   }
-  @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-  .hero-inner { animation: spin 20s linear infinite reverse; }
-  .avatar {
-    width: 160px; height: 160px; border-radius: 50%;
-    background: linear-gradient(135deg, #0a2a4a, #1a6fa8);
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'Cinzel', serif; font-size: 3.5rem; color: var(--aurora);
-    border: 2px solid rgba(0,201,167,0.3);
+  .hero-scroll {
+    position:absolute; right:4rem; top:50%;
+    transform:translateY(-50%) rotate(90deg);
+    font-size:0.65rem; letter-spacing:0.25em; text-transform:uppercase;
+    color:var(--faint); display:flex; align-items:center; gap:1rem;
   }
-  .hero h1 { font-family: 'Cinzel', serif; font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 700; letter-spacing: 3px; margin-bottom: 0.5rem; }
-  .hero h1 span { color: var(--aurora); }
-  .hero-tagline { font-size: 1rem; color: var(--stardust); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 1.5rem; font-weight: 300; }
-  .hero-desc { max-width: 600px; color: var(--muted); font-size: 1rem; line-height: 1.8; margin-bottom: 2.5rem; }
-  .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
-  .btn {
-    padding: 0.75rem 2rem; border-radius: 2px; font-family: 'Raleway', sans-serif;
-    font-size: 0.85rem; letter-spacing: 2px; text-transform: uppercase; cursor: pointer;
-    text-decoration: none; transition: all 0.3s; display: inline-block;
+  .hero-scroll::after { content:''; display:block; width:60px; height:1px; background:var(--faint); }
+  .hero-eyebrow {
+    font-size:0.72rem; letter-spacing:0.22em; text-transform:uppercase;
+    color:var(--gold); margin-bottom:1.5rem; font-weight:400;
+    display:flex; align-items:center; gap:1rem;
   }
-  .btn-primary { background: var(--aurora); color: var(--deep-space); font-weight: 600; border: none; }
-  .btn-primary:hover { background: #00e6bf; transform: translateY(-2px); }
-  .btn-outline { background: transparent; color: var(--aurora); border: 1px solid var(--aurora); }
-  .btn-outline:hover { background: rgba(0,201,167,0.1); transform: translateY(-2px); }
-  section { position: relative; z-index: 1; padding: 6rem 2rem; max-width: 1100px; margin: 0 auto; }
-  .section-label { font-size: 0.75rem; letter-spacing: 4px; text-transform: uppercase; color: var(--aurora); margin-bottom: 0.5rem; }
-  .section-title { font-family: 'Cinzel', serif; font-size: clamp(1.8rem, 4vw, 2.5rem); margin-bottom: 1rem; }
-  .section-line { width: 60px; height: 1px; background: var(--aurora); margin-bottom: 3rem; }
-  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
-  .about-text p { color: var(--stardust); line-height: 1.9; margin-bottom: 1rem; font-size: 0.95rem; }
-  .about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
-  .stat-card {
-    background: rgba(26, 111, 168, 0.08);
-    border: 1px solid rgba(0,201,167,0.15);
-    border-radius: 4px; padding: 1.5rem; text-align: center;
-    transition: border-color 0.3s, transform 0.3s;
+  .hero-eyebrow::before { content:''; display:block; width:40px; height:1px; background:var(--gold); opacity:0.5; }
+  .hero h1 {
+    font-family:'Playfair Display', serif;
+    font-size:clamp(3.5rem,8vw,7rem);
+    font-weight:700; line-height:0.95; letter-spacing:-0.02em; margin-bottom:0.2em;
   }
-  .stat-card:hover { border-color: var(--aurora); transform: translateY(-4px); }
-  .stat-num { font-family: 'Cinzel', serif; font-size: 2rem; color: var(--aurora); font-weight: 700; }
-  .stat-label { font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; margin-top: 0.25rem; }
-  .achievements-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
-  .achievement-card {
-    background: rgba(5, 15, 31, 0.8);
-    border: 1px solid rgba(0,201,167,0.15);
-    border-radius: 4px; padding: 2rem;
-    transition: all 0.3s; position: relative; overflow: hidden;
+  .hero h1 .italic { font-style:italic; font-weight:400; color:var(--gold); }
+  .hero-sub { font-family:'Playfair Display', serif; font-size:clamp(1rem,2.5vw,1.6rem); font-style:italic; color:var(--muted); margin-bottom:3rem; max-width:600px; }
+  .hero-desc { max-width:520px; font-size:0.95rem; color:var(--muted); line-height:1.8; margin-bottom:3rem; }
+  .hero-row { display:flex; align-items:center; gap:2rem; flex-wrap:wrap; }
+  .btn { padding:0.85rem 2.2rem; font-family:'Outfit', sans-serif; font-size:0.78rem; letter-spacing:0.12em; text-transform:uppercase; text-decoration:none; font-weight:500; display:inline-block; transition:all 0.25s; }
+  .btn-gold { background:var(--gold); color:#0c0c10; }
+  .btn-gold:hover { background:var(--gold-lt); transform:translateY(-2px); }
+  .btn-ghost { background:transparent; color:var(--text); border:1px solid var(--border2); }
+  .btn-ghost:hover { border-color:var(--gold); color:var(--gold); }
+  .hero-stats { display:flex; gap:3rem; margin-left:auto; }
+  .hstat { text-align:center; }
+  .hstat-num { font-family:'Playfair Display', serif; font-size:2rem; font-weight:700; color:var(--gold); line-height:1; margin-bottom:0.2rem; }
+  .hstat-label { font-size:0.65rem; color:var(--muted); letter-spacing:0.12em; text-transform:uppercase; }
+
+  section { position:relative; z-index:1; }
+  .sec-inner { max-width:1200px; margin:0 auto; padding:6rem 4rem; }
+  .section-border { border-top:1px solid var(--border); }
+  .sec-top { display:flex; align-items:flex-start; gap:3rem; margin-bottom:4rem; }
+  .sec-num { font-size:0.65rem; color:var(--faint); letter-spacing:0.15em; padding-top:0.6rem; flex-shrink:0; }
+  .sec-label { font-size:0.68rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold); margin-bottom:0.5rem; }
+  .sec-title { font-family:'Playfair Display', serif; font-size:clamp(2rem,4vw,3.2rem); font-weight:700; line-height:1.1; letter-spacing:-0.01em; }
+  .sec-divider { width:100%; height:1px; background:linear-gradient(90deg, var(--gold) 0%, transparent 40%); margin-bottom:4rem; opacity:0.3; }
+
+  .about-layout { display:grid; grid-template-columns:1fr 1fr; gap:5rem; align-items:start; }
+  .about-text p { color:var(--muted); line-height:1.9; margin-bottom:1.2rem; font-size:0.95rem; }
+  .about-text a { color:var(--gold); text-decoration:none; }
+  .about-text a:hover { text-decoration:underline; }
+  .about-cards { display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--border); }
+  .acard { background:var(--surface); padding:2rem; text-align:center; transition:background 0.25s; }
+  .acard:hover { background:var(--surface2); }
+  .acard-num { font-family:'Playfair Display', serif; font-size:2.5rem; color:var(--gold); line-height:1; margin-bottom:0.4rem; }
+  .acard-lbl { font-size:0.7rem; color:var(--muted); letter-spacing:0.1em; text-transform:uppercase; }
+
+  .ach-item { display:grid; grid-template-columns:1fr auto; gap:2rem; padding:2.5rem 0; border-bottom:1px solid var(--border); align-items:start; }
+  .ach-item:first-child { border-top:1px solid var(--border); }
+  .ach-left { display:flex; gap:2rem; align-items:flex-start; }
+  .ach-icon { width:52px; height:52px; flex-shrink:0; background:var(--surface2); border:1px solid var(--border2); display:flex; align-items:center; justify-content:center; font-size:1.3rem; }
+  .ach-body h3 { font-family:'Playfair Display', serif; font-size:1.2rem; font-weight:700; margin-bottom:0.4rem; }
+  .ach-body p { font-size:0.88rem; color:var(--muted); line-height:1.7; }
+  .ach-badge { font-size:0.7rem; color:var(--gold); border:1px solid rgba(201,150,58,0.3); padding:0.3rem 0.9rem; letter-spacing:0.08em; white-space:nowrap; background:rgba(201,150,58,0.05); }
+
+  .projects-layout { display:grid; grid-template-columns:1fr 1fr; gap:1.5rem; }
+  .proj-card { background:var(--surface); border:1px solid var(--border); padding:2.5rem; position:relative; overflow:hidden; transition:border-color 0.3s, transform 0.3s; }
+  .proj-card::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg, var(--gold), var(--blue), transparent); opacity:0; transition:opacity 0.3s; }
+  .proj-card:hover { border-color:var(--border2); transform:translateY(-4px); }
+  .proj-card:hover::before { opacity:1; }
+  .proj-num { font-size:0.65rem; color:var(--faint); letter-spacing:0.15em; margin-bottom:1.2rem; display:block; }
+  .proj-card h3 { font-family:'Playfair Display', serif; font-size:1.4rem; font-weight:700; margin-bottom:0.7rem; }
+  .proj-card p { font-size:0.88rem; color:var(--muted); line-height:1.75; margin-bottom:1.5rem; }
+  .tags { display:flex; flex-wrap:wrap; gap:0.4rem; margin-bottom:1.5rem; }
+  .tag { font-size:0.65rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); background:var(--surface2); border:1px solid var(--border); padding:0.25rem 0.7rem; }
+  .proj-link { font-size:0.8rem; color:var(--gold); text-decoration:none; }
+  .proj-link:hover { color:var(--gold-lt); }
+
+  .skills-layout { display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--border); border:1px solid var(--border); }
+  .skill-group { background:var(--surface); padding:2.5rem 2rem; transition:background 0.25s; }
+  .skill-group:hover { background:var(--surface2); }
+  .skill-group h3 { font-family:'Playfair Display', serif; font-size:1rem; font-weight:700; color:var(--gold); margin-bottom:1.2rem; }
+  .skill-item { font-size:0.83rem; color:var(--muted); padding:0.4rem 0; border-bottom:1px solid var(--border); display:flex; align-items:center; gap:0.6rem; }
+  .skill-item::before { content:''; display:block; width:4px; height:4px; border-radius:50%; background:var(--gold); opacity:0.5; flex-shrink:0; }
+  .skill-item:last-child { border-bottom:none; }
+
+  .contact-layout { display:grid; grid-template-columns:1fr 1fr; gap:6rem; align-items:start; }
+  .contact-headline { font-family:'Playfair Display', serif; font-size:clamp(1.6rem,3vw,2.4rem); font-weight:700; line-height:1.25; margin-bottom:1.5rem; }
+  .contact-headline em { font-style:italic; color:var(--gold); }
+  .contact-intro { font-size:0.92rem; color:var(--muted); line-height:1.8; margin-bottom:2.5rem; }
+  .social-links { display:flex; flex-direction:column; }
+  .social-link { display:flex; justify-content:space-between; align-items:center; padding:1rem 0; border-bottom:1px solid var(--border); text-decoration:none; color:var(--text); font-size:0.88rem; transition:color 0.2s, padding-left 0.2s; }
+  .social-link:first-child { border-top:1px solid var(--border); }
+  .social-link:hover { color:var(--gold); padding-left:0.5rem; }
+  .social-link span { font-size:0.7rem; color:var(--faint); transition:color 0.2s; }
+  .social-link:hover span { color:var(--gold); }
+  .contact-cta { background:var(--surface); border:1px solid var(--border); padding:3rem; position:relative; overflow:hidden; }
+  .contact-cta::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse at top left, var(--glow), transparent 60%); pointer-events:none; }
+  .contact-cta h3 { font-family:'Playfair Display', serif; font-size:1.4rem; font-weight:700; margin-bottom:0.8rem; }
+  .contact-cta p { font-size:0.88rem; color:var(--muted); line-height:1.75; margin-bottom:2rem; }
+
+  footer { position:relative; z-index:1; border-top:1px solid var(--border); padding:2rem 4rem; display:flex; justify-content:space-between; align-items:center; }
+  footer p { font-size:0.75rem; color:var(--faint); letter-spacing:0.08em; }
+  .footer-dot { color:var(--gold); margin:0 0.5rem; }
+
+  @media (max-width:900px) {
+    nav { padding:1.2rem 1.5rem; }
+    .nav-links { display:none; }
+    .hero { padding:0 1.5rem 5rem; }
+    .hero-stats, .hero-scroll { display:none; }
+    .sec-inner { padding:4rem 1.5rem; }
+    .about-layout, .contact-layout { grid-template-columns:1fr; gap:3rem; }
+    .projects-layout { grid-template-columns:1fr; }
+    .skills-layout { grid-template-columns:1fr 1fr; }
+    .ach-item { grid-template-columns:1fr; }
+    footer { flex-direction:column; gap:0.5rem; padding:1.5rem; text-align:center; }
   }
-  .achievement-card::before {
-    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
-    background: linear-gradient(90deg, transparent, var(--aurora), transparent);
-  }
-  .achievement-card:hover { border-color: var(--aurora); transform: translateY(-5px); background: rgba(0,201,167,0.05); }
-  .achievement-icon { font-size: 2rem; margin-bottom: 1rem; }
-  .achievement-card h3 { font-family: 'Cinzel', serif; font-size: 1rem; color: var(--star-white); margin-bottom: 0.5rem; }
-  .achievement-card p { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
-  .achievement-year { display: inline-block; margin-top: 0.75rem; font-size: 0.75rem; color: var(--aurora); letter-spacing: 1px; border: 1px solid rgba(0,201,167,0.3); padding: 0.2rem 0.75rem; border-radius: 2px; }
-  .project-card {
-    background: rgba(5, 15, 31, 0.8);
-    border: 1px solid rgba(26,111,168,0.2);
-    border-radius: 4px; padding: 2.5rem;
-    display: flex; gap: 2rem; align-items: flex-start;
-    transition: all 0.3s; margin-bottom: 1.5rem;
-  }
-  .project-card:hover { border-color: var(--aurora); transform: translateX(5px); }
-  .project-icon { font-size: 2.5rem; min-width: 50px; }
-  .project-info h3 { font-family: 'Cinzel', serif; font-size: 1.2rem; color: var(--star-white); margin-bottom: 0.5rem; }
-  .project-info p { font-size: 0.9rem; color: var(--muted); line-height: 1.7; margin-bottom: 1rem; }
-  .project-link { color: var(--aurora); text-decoration: none; font-size: 0.85rem; letter-spacing: 1px; }
-  .project-link:hover { text-decoration: underline; }
-  .tag { display: inline-block; font-size: 0.7rem; letter-spacing: 1px; color: var(--stardust); background: rgba(26,111,168,0.15); border: 1px solid rgba(26,111,168,0.3); padding: 0.2rem 0.6rem; border-radius: 2px; margin-right: 0.5rem; margin-bottom: 0.5rem; }
-  .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; }
-  .skill-group { background: rgba(5,15,31,0.8); border: 1px solid rgba(0,201,167,0.1); border-radius: 4px; padding: 1.5rem; }
-  .skill-group h3 { font-family: 'Cinzel', serif; font-size: 0.9rem; color: var(--aurora); margin-bottom: 1rem; letter-spacing: 1px; }
-  .skill-item { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.6rem; font-size: 0.85rem; color: var(--stardust); }
-  .skill-item::before { content: '◆'; color: var(--aurora); font-size: 0.5rem; }
-  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
-  .contact-info p { color: var(--stardust); line-height: 1.8; margin-bottom: 2rem; }
-  .social-links { display: flex; flex-direction: column; gap: 1rem; }
-  .social-link {
-    display: flex; align-items: center; gap: 1rem;
-    padding: 1rem 1.5rem;
-    background: rgba(5,15,31,0.8);
-    border: 1px solid rgba(0,201,167,0.1);
-    border-radius: 4px; text-decoration: none; color: var(--stardust);
-    transition: all 0.3s; font-size: 0.9rem;
-  }
-  .social-link:hover { border-color: var(--aurora); color: var(--aurora); transform: translateX(5px); }
-  .social-icon { font-size: 1.2rem; min-width: 24px; }
-  .contact-email {
-    background: rgba(0,201,167,0.05); border: 1px solid rgba(0,201,167,0.2);
-    border-radius: 4px; padding: 2rem;
-  }
-  .contact-email h3 { font-family: 'Cinzel', serif; font-size: 1rem; color: var(--aurora); margin-bottom: 1rem; }
-  .cosmic-divider { width: 100%; height: 1px; background: linear-gradient(90deg, transparent, rgba(0,201,167,0.3), transparent); margin: 0; }
-  footer {
-    position: relative; z-index: 1;
-    text-align: center; padding: 2rem;
-    border-top: 1px solid rgba(0,201,167,0.1);
-    color: var(--muted); font-size: 0.8rem; letter-spacing: 1px;
-  }
-  @media (max-width: 700px) {
-    nav { padding: 1rem 1.5rem; }
-    .nav-links { display: none; }
-    .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 2rem; }
-    .project-card { flex-direction: column; }
-  }
+  @media (max-width:500px) { .skills-layout { grid-template-columns:1fr; } }
+
+  .reveal { opacity:0; transform:translateY(24px); transition:opacity 0.6s ease, transform 0.6s ease; }
+  .reveal.visible { opacity:1; transform:none; }
+
+  @keyframes fadeUp { from { opacity:0; transform:translateY(30px); } to { opacity:1; transform:none; } }
+  .hero-eyebrow { animation:fadeUp 0.7s 0.1s both ease; }
+  .hero h1      { animation:fadeUp 0.7s 0.25s both ease; }
+  .hero-sub     { animation:fadeUp 0.7s 0.4s both ease; }
+  .hero-desc    { animation:fadeUp 0.7s 0.5s both ease; }
+  .hero-row     { animation:fadeUp 0.7s 0.65s both ease; }
 </style>
 </head>
 <body>
 
-<div id="stars"></div>
-
 <nav>
-  <div class="nav-logo">⭑ Farhan Hasin</div>
+  <div class="nav-logo">Farhan Hasin</div>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#achievements">Achievements</a></li>
@@ -180,223 +201,169 @@
   </ul>
 </nav>
 
-<!-- HERO -->
 <div class="hero">
-  <div class="hero-orbit">
-    <div class="hero-inner">
-      <div class="avatar">FH</div>
-    </div>
-  </div>
-  <div class="hero-tagline">Astrophysics &amp; Physics Enthusiast</div>
-  <h1><span>Farhan Hasin</span></h1>
-  <p style="font-family:'Cinzel',serif; font-size:1rem; color:var(--stardust); letter-spacing:2px; margin-bottom:1.5rem;">Exploring the Universe, One Equation at a Time</p>
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-scroll">Scroll</div>
+  <p class="hero-eyebrow">Astrophysics &amp; Physics Enthusiast</p>
+  <h1>Farhan<br><span class="italic">Hasin</span></h1>
+  <p class="hero-sub">"Exploring the Universe, One Equation at a Time"</p>
   <p class="hero-desc">High school student from Bangladesh passionate about the cosmos, physics, and the pursuit of scientific truth. STEM researcher in the making — reaching for the stars, literally.</p>
-  <div class="hero-btns">
-    <a href="#achievements" class="btn btn-primary">View Achievements</a>
-    <a href="#contact" class="btn btn-outline">Get in Touch</a>
+  <div class="hero-row">
+    <a href="#achievements" class="btn btn-gold">View Achievements</a>
+    <a href="#contact" class="btn btn-ghost">Get in Touch</a>
+    <div class="hero-stats">
+      <div class="hstat"><div class="hstat-num">2</div><div class="hstat-label">Olympiad Quals</div></div>
+      <div class="hstat"><div class="hstat-num">∞</div><div class="hstat-label">Curiosity Level</div></div>
+      <div class="hstat"><div class="hstat-num">1</div><div class="hstat-label">Active Projects</div></div>
+    </div>
   </div>
 </div>
 
-<div class="cosmic-divider"></div>
-
-<!-- ABOUT -->
-<section id="about">
-  <p class="section-label">Who I Am</p>
-  <h2 class="section-title">About Me</h2>
-  <div class="section-line"></div>
-  <div class="about-grid">
-    <div class="about-text">
-      <p>I'm Farhan Hasin, a high school student from Bangladesh with a deep fascination for astrophysics and physics. My curiosity about the universe drives me to explore everything from celestial mechanics to quantum phenomena.</p>
-      <p>I'm actively pursuing a path in STEM research, competing in national and international olympiads, and contributing to astronomy outreach through real-world projects. I believe the universe has stories to tell — and I'm here to listen.</p>
-      <p>Currently working on <a href="https://www.star-sync.com" target="_blank" style="color: var(--aurora); text-decoration: none;">Star-Sync</a>, an astronomy platform bridging science and community.</p>
+<section id="about" class="section-border">
+  <div class="sec-inner">
+    <div class="sec-top reveal">
+      <span class="sec-num">01</span>
+      <div><p class="sec-label">Who I Am</p><h2 class="sec-title">About Me</h2></div>
     </div>
-    <div class="about-stats">
-      <div class="stat-card">
-        <div class="stat-num">2</div>
-        <div class="stat-label">Olympiad Qualifications</div>
+    <div class="sec-divider"></div>
+    <div class="about-layout">
+      <div class="about-text reveal">
+        <p>I'm Farhan Hasin, a high school student from Bangladesh with a deep fascination for astrophysics and physics. My curiosity about the universe drives me to explore everything from celestial mechanics to quantum phenomena.</p>
+        <p>I'm actively willing to pursue a path in STEM research, competing in national and international olympiads, and contributing to astronomy outreach through real-world projects. I believe the universe has stories to tell — and I'm here to listen.</p>
+        <p>Currently working on <a href="https://www.star-sync.com" target="_blank">Star-Sync</a>, an astronomy platform bridging science and community.</p>
       </div>
-      <div class="stat-card">
-        <div class="stat-num">∞</div>
-        <div class="stat-label">Curiosity Level</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-num">1</div>
-        <div class="stat-label">Active Projects</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-num">🌌</div>
-        <div class="stat-label">Universe to Explore</div>
+      <div class="about-cards reveal">
+        <div class="acard"><div class="acard-num">2</div><div class="acard-lbl">Olympiad Qualifications</div></div>
+        <div class="acard"><div class="acard-num">∞</div><div class="acard-lbl">Curiosity Level</div></div>
+        <div class="acard"><div class="acard-num">1</div><div class="acard-lbl">Active Projects</div></div>
+        <div class="acard"><div class="acard-num">🌌</div><div class="acard-lbl">Universe to Explore</div></div>
       </div>
     </div>
   </div>
 </section>
 
-<div class="cosmic-divider"></div>
-
-<!-- ACHIEVEMENTS -->
-<section id="achievements">
-  <p class="section-label">Milestones</p>
-  <h2 class="section-title">Achievements</h2>
-  <div class="section-line"></div>
-  <div class="achievements-grid">
-    <div class="achievement-card">
-      <div class="achievement-icon">🌠</div>
-      <h3>International Astronomy Olympiad</h3>
-      <p>Qualified for the International Astronomy Olympiad — a prestigious global competition testing deep knowledge of astronomy and astrophysics.</p>
-      <span class="achievement-year">IAO 2025</span>
+<section id="achievements" class="section-border">
+  <div class="sec-inner">
+    <div class="sec-top reveal">
+      <span class="sec-num">02</span>
+      <div><p class="sec-label">Milestones</p><h2 class="sec-title">Achievements</h2></div>
     </div>
-    <div class="achievement-card">
-      <div class="achievement-icon">⚛️</div>
-      <h3>Bangladesh Physics Olympiad</h3>
-      <p>Competed in the Bangladesh Physics Olympiad 2025, demonstrating excellence in physics problem-solving at the national level.</p>
-      <span class="achievement-year">BPhO 2025</span>
+    <div class="sec-divider"></div>
+    <div class="ach-item reveal">
+      <div class="ach-left">
+        <div class="ach-icon">🌠</div>
+        <div class="ach-body"><h3>International Astronomy Olympiad</h3><p>Qualified for the International Astronomy Olympiad — a prestigious global competition testing deep knowledge of astronomy and astrophysics.</p></div>
+      </div>
+      <span class="ach-badge">IAO 2025</span>
     </div>
-    <div class="achievement-card">
-      <div class="achievement-icon">🔭</div>
-      <h3>Star-Sync Astronomy Platform</h3>
-      <p>Currently developing and contributing to Star-Sync, an astronomy website dedicated to making the cosmos accessible to all.</p>
-      <span class="achievement-year">Ongoing</span>
+    <div class="ach-item reveal">
+      <div class="ach-left">
+        <div class="ach-icon">⚛️</div>
+        <div class="ach-body"><h3>Bangladesh Physics Olympiad</h3><p>Competed in the Bangladesh Physics Olympiad 2025, demonstrating excellence in physics problem-solving at the national level.</p></div>
+      </div>
+      <span class="ach-badge">BPhO 2025</span>
+    </div>
+    <div class="ach-item reveal">
+      <div class="ach-left">
+        <div class="ach-icon">🔭</div>
+        <div class="ach-body"><h3>Star-Sync Astronomy Platform</h3><p>Currently developing and contributing to Star-Sync, an astronomy website dedicated to making the cosmos accessible to all.</p></div>
+      </div>
+      <span class="ach-badge">Ongoing</span>
     </div>
   </div>
 </section>
 
-<div class="cosmic-divider"></div>
-
-<!-- PROJECTS -->
-<section id="projects">
-  <p class="section-label">What I'm Building</p>
-  <h2 class="section-title">Projects</h2>
-  <div class="section-line"></div>
-  <div class="project-card">
-    <div class="project-icon">🌐</div>
-    <div class="project-info">
-      <h3>Star-Sync</h3>
-      <p>An astronomy-focused website I'm actively contributing to — designed to make astronomical knowledge, events, and community accessible. Covers topics from stargazing to deep-space phenomena.</p>
-      <div>
-        <span class="tag">Astronomy</span>
-        <span class="tag">Science Outreach</span>
-        <span class="tag">Web</span>
-      </div>
-      <br>
-      <a href="https://www.star-sync.com" target="_blank" class="project-link">Visit star-sync.com →</a>
+<section id="projects" class="section-border">
+  <div class="sec-inner">
+    <div class="sec-top reveal">
+      <span class="sec-num">03</span>
+      <div><p class="sec-label">What I'm Building</p><h2 class="sec-title">Projects</h2></div>
     </div>
-  </div>
-  <div class="project-card">
-    <div class="project-icon">📐</div>
-    <div class="project-info">
-      <h3>Olympiad Problem Research</h3>
-      <p>Studying and solving advanced astrophysics and physics problems for competitive olympiads — covering celestial mechanics, optics, thermodynamics, and more.</p>
-      <div>
-        <span class="tag">Physics</span>
-        <span class="tag">Astrophysics</span>
-        <span class="tag">Research</span>
+    <div class="sec-divider"></div>
+    <div class="projects-layout">
+      <div class="proj-card reveal">
+        <span class="proj-num">01</span>
+        <h3>Star-Sync</h3>
+        <p>An astronomy-focused website I'm actively contributing to — designed to make astronomical knowledge, events, and community accessible. Covers topics from stargazing to deep-space phenomena.</p>
+        <div class="tags"><span class="tag">Astronomy</span><span class="tag">Science Outreach</span><span class="tag">Web</span></div>
+        <a href="https://www.star-sync.com" target="_blank" class="proj-link">Visit star-sync.com →</a>
+      </div>
+      <div class="proj-card reveal">
+        <span class="proj-num">02</span>
+        <h3>Olympiad Problem Research</h3>
+        <p>Studying and solving advanced astrophysics and physics problems for competitive olympiads — covering celestial mechanics, optics, thermodynamics, and more.</p>
+        <div class="tags"><span class="tag">Physics</span><span class="tag">Astrophysics</span><span class="tag">Research</span></div>
       </div>
     </div>
   </div>
 </section>
 
-<div class="cosmic-divider"></div>
-
-<!-- SKILLS -->
-<section id="skills">
-  <p class="section-label">Expertise</p>
-  <h2 class="section-title">Skills & Interests</h2>
-  <div class="section-line"></div>
-  <div class="skills-grid">
-    <div class="skill-group">
-      <h3>🔭 Astrophysics</h3>
-      <div class="skill-item">Celestial Mechanics</div>
-      <div class="skill-item">Stellar Evolution</div>
-      <div class="skill-item">Cosmology</div>
-      <div class="skill-item">Observational Astronomy</div>
+<section id="skills" class="section-border">
+  <div class="sec-inner">
+    <div class="sec-top reveal">
+      <span class="sec-num">04</span>
+      <div><p class="sec-label">Expertise</p><h2 class="sec-title">Skills & Interests</h2></div>
     </div>
-    <div class="skill-group">
-      <h3>⚡ Physics</h3>
-      <div class="skill-item">Classical Mechanics</div>
-      <div class="skill-item">Thermodynamics</div>
-      <div class="skill-item">Optics & Waves</div>
-      <div class="skill-item">Electromagnetism</div>
-    </div>
-    <div class="skill-group">
-      <h3>🧮 Mathematics</h3>
-      <div class="skill-item">Calculus</div>
-      <div class="skill-item">Linear Algebra</div>
-      <div class="skill-item">Statistics</div>
-      <div class="skill-item">Problem Solving</div>
-    </div>
-    <div class="skill-group">
-      <h3>🌍 Languages</h3>
-      <div class="skill-item">Bengali (Native)</div>
-      <div class="skill-item">English (Fluent)</div>
-      <div class="skill-item">Scientific Writing</div>
-      <div class="skill-item">Research Communication</div>
+    <div class="sec-divider"></div>
+    <div class="skills-layout reveal">
+      <div class="skill-group"><h3>Astrophysics</h3><div class="skill-item">Celestial Mechanics</div><div class="skill-item">Stellar Evolution</div><div class="skill-item">Cosmology</div><div class="skill-item">Observational Astronomy</div></div>
+      <div class="skill-group"><h3>Physics</h3><div class="skill-item">Classical Mechanics</div><div class="skill-item">Thermodynamics</div><div class="skill-item">Optics & Waves</div><div class="skill-item">Electromagnetism</div></div>
+      <div class="skill-group"><h3>Mathematics</h3><div class="skill-item">Calculus</div><div class="skill-item">Linear Algebra</div><div class="skill-item">Statistics</div><div class="skill-item">Problem Solving</div></div>
+      <div class="skill-group"><h3>Languages</h3><div class="skill-item">Bengali (Native)</div><div class="skill-item">English (Fluent)</div><div class="skill-item">Scientific Writing</div><div class="skill-item">Research Communication</div></div>
     </div>
   </div>
 </section>
 
-<div class="cosmic-divider"></div>
-
-<!-- CONTACT -->
-<section id="contact">
-  <p class="section-label">Reach Out</p>
-  <h2 class="section-title">Contact</h2>
-  <div class="section-line"></div>
-  <div class="contact-grid">
-    <div class="contact-info">
-      <p>I'm always open to connecting with fellow science enthusiasts, researchers, educators, or anyone curious about the universe. Whether it's collaboration, mentorship, or just a cosmic conversation — reach out!</p>
-      <div class="social-links">
-        <a href="mailto:frh73375@gmail.com" class="social-link">
-          <span class="social-icon">✉</span> frh73375@gmail.com
-        </a>
-        <!-- REPLACE the # below with your actual profile URLs -->
-        <a href="https://linkedin.com/in/YOUR-USERNAME" target="_blank" class="social-link">
-          <span class="social-icon">in</span> LinkedIn
-        </a>
-        <a href="https://facebook.com/YOUR-USERNAME" target="_blank" class="social-link">
-          <span class="social-icon">f</span> Facebook
-        </a>
-        <a href="https://github.com/YOUR-USERNAME" target="_blank" class="social-link">
-          <span class="social-icon">⌥</span> GitHub
-        </a>
-        <a href="https://discord.com/users/YOUR-ID" target="_blank" class="social-link">
-          <span class="social-icon">#</span> Discord
-        </a>
-      </div>
+<section id="contact" class="section-border">
+  <div class="sec-inner">
+    <div class="sec-top reveal">
+      <span class="sec-num">05</span>
+      <div><p class="sec-label">Reach Out</p><h2 class="sec-title">Contact</h2></div>
     </div>
-    <div class="contact-email">
-      <h3>📡 Let's Connect</h3>
-      <p style="color: var(--stardust); font-size: 0.9rem; line-height: 1.8; margin-bottom: 1.5rem;">Looking to collaborate on astronomy research, STEM outreach, or just want to talk about black holes and spacetime? My inbox is always open.</p>
-      <a href="mailto:frh73375@gmail.com" class="btn btn-primary">Send a Message</a>
+    <div class="sec-divider"></div>
+    <div class="contact-layout">
+      <div class="reveal">
+        <p class="contact-headline">Let's talk about the<br><em>universe</em> — or anything in between.</p>
+        <p class="contact-intro">I'm always open to connecting with fellow science enthusiasts, researchers, educators, or anyone curious about the universe. Whether it's collaboration, mentorship, or just a cosmic conversation — reach out!</p>
+        <div class="social-links">
+          <a href="mailto:frh73375@gmail.com" class="social-link">frh73375@gmail.com <span>Email →</span></a>
+          <a href="https://linkedin.com/in/YOUR-USERNAME" target="_blank" class="social-link">LinkedIn <span>Connect →</span></a>
+          <a href="https://facebook.com/YOUR-USERNAME" target="_blank" class="social-link">Facebook <span>Follow →</span></a>
+          <a href="https://github.com/YOUR-USERNAME" target="_blank" class="social-link">GitHub <span>View →</span></a>
+          <a href="https://discord.com/users/YOUR-ID" target="_blank" class="social-link">Discord <span>Join →</span></a>
+        </div>
+      </div>
+      <div class="contact-cta reveal">
+        <h3>📡 Let's Connect</h3>
+        <p>Looking to collaborate on astronomy research, STEM outreach, or just want to talk about black holes and spacetime? My inbox is always open.</p>
+        <a href="mailto:frh73375@gmail.com" class="btn btn-gold">Send a Message</a>
+      </div>
     </div>
   </div>
 </section>
 
 <footer>
-  <p>⭑ Farhan Hasin · Astrophysics & Physics Enthusiast · Bangladesh · 2025</p>
+  <p>Farhan Hasin<span class="footer-dot">·</span>Astrophysics & Physics Enthusiast<span class="footer-dot">·</span>Bangladesh</p>
+  <p>2025</p>
 </footer>
 
 <script>
-  const starsEl = document.getElementById('stars');
-  for (let i = 0; i < 180; i++) {
-    const s = document.createElement('div');
-    s.className = 'star';
-    const size = Math.random() * 2.5 + 0.5;
-    s.style.cssText = `
-      width:${size}px; height:${size}px;
-      top:${Math.random()*100}%;
-      left:${Math.random()*100}%;
-      animation-duration:${Math.random()*4+2}s;
-      animation-delay:${Math.random()*5}s;
-      opacity:${Math.random()*0.7+0.1};
-    `;
-    starsEl.appendChild(s);
-  }
   document.querySelectorAll('a[href^="#"]').forEach(a => {
     a.addEventListener('click', e => {
       e.preventDefault();
-      document.querySelector(a.getAttribute('href'))?.scrollIntoView({ behavior: 'smooth' });
+      document.querySelector(a.getAttribute('href'))?.scrollIntoView({ behavior:'smooth' });
     });
   });
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold:0.1 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 </script>
 </body>
 </html>
